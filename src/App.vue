@@ -1,15 +1,12 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Microblog />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Microblog from './components/Microblog'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Microblog
   }
 }
 </script>
