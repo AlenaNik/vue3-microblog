@@ -1,15 +1,22 @@
 <template>
     <div>
-        <button>
-            ❤️ {{ post.likes }}
+        <div class="box">
+            <hashtag v-for="tag in post.hashtags" :key="tag.id" :hashtag="tag"/>
+        </div>
+        <div>
+            👍 {{ post.likes }}
+        </div>
+        <button @click="hitLike">
+            ❤️ Like
         </button>
-
-        <hashtag v-for="tag in post.hashtags" :key="tag.id" :hashtag="tag"/>
     </div>
+
 </template>
 
 <script>
 import Hashtag from './Hashtag';
+import { store } from '../store/index'
+
 export default {
   components: {
     Hashtag
@@ -18,7 +25,15 @@ export default {
     post: {
       type: Object
     }
-  }
+  },
+    setup(props) {
+      const hitLike = () => {
+        store.incrementLike(props.post)
+      }
+      return {
+        hitLike
+      }
+    }
 }
 </script>
 
@@ -28,7 +43,7 @@ button {
     background: transparent;
     font-weight: bold;
 }
-div {
+.box {
     display: flex;
     justify-content: space-between;
 }
