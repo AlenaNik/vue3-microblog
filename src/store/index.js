@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { posts } from './posts'
 class Store {
     constructor() {
@@ -7,6 +7,21 @@ class Store {
            currentHashtag: null,
         })
     }
+
+    get filteredPosts() {
+       return computed(() => {
+            if (!store.state.currentHashtag) {
+                return store.state.posts
+            }
+            return store.state.posts.filter(post => {
+                if (post.hashtags.includes(store.state.currentHashtag)) {
+                    return true
+                }
+                return false
+            })
+        })
+    }
+
     setHashtag(tag) {
         this.state.currentHashtag = tag
     }

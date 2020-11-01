@@ -24,23 +24,11 @@ import Controls from "./Controls";
           Controls
       },
       setup() {
-        const filteredPosts = computed(() => {
-          if (!store.state.currentHashtag) {
-              return store.state.posts
-          }
-          return store.state.posts.filter(post => {
-              if (post.hashtags.includes(store.state.currentHashtag)) {
-                  return true
-              }
-              return false
-          })
-        })
-
         const setHashtag = (e) => {
             store.setHashtag(e.target.value)
         }
         return {
-          filteredPosts,
+          filteredPosts: store.filteredPosts,
           setHashtag,
           currentHashtag: computed(() => store.state.currentHashtag)
         }
