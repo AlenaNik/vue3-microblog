@@ -1,4 +1,5 @@
 <template>
+    <input type="text" :value="currentHashtag" @input="setHashtag"/>
     <card v-for="post in filteredPosts" :key="post.id">
         <template v-slot:title>
             <h1>{{ post.title}}</h1>
@@ -10,7 +11,6 @@
             <Controls :post="post"/>
         </template>
     </card>
-    {{ currentHashtag }}
 </template>
 
 <script>
@@ -36,8 +36,13 @@ import Controls from "./Controls";
           })
         })
 
+        const setHashtag = (e) => {
+            store.setHashtag(e.target.value)
+        }
         return {
-          filteredPosts
+          filteredPosts,
+          setHashtag,
+          currentHashtag: computed(() => store.state.currentHashtag)
         }
       }
     }
