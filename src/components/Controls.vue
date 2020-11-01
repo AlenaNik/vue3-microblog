@@ -4,7 +4,7 @@
             ❤️ {{ post.likes }}
         </button>
 
-        <hashtag v-for="tag in post.hashtags" :key="tag.id" :hashtag="tag" @sethashtag="setHashtag"/>
+        <hashtag v-for="tag in post.hashtags" :key="tag.id" :hashtag="tag"/>
     </div>
 </template>
 
@@ -17,15 +17,6 @@ export default {
   props: {
     post: {
       type: Object
-    }
-  },
-  setup(props, context) {
-    const setHashtag = (tag) => {
-        console.log(tag)
-        context.emit('sethashtag', tag)
-    }
-    return {
-        setHashtag
     }
   }
 }
